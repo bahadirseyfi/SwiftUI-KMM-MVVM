@@ -8,6 +8,7 @@ struct ContentView: View {
             Button("Click me!") {
                 withAnimation {
                     showContent = !showContent
+                    network()
                 }
             }
 
@@ -23,6 +24,17 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding()
+    }
+    
+    func network() {
+        let sdk = JedlixAPI()
+        sdk.getChargeStations { results, error in
+            if let results = results {
+                print("Result", results)
+            } else {
+                print("Localized", error?.localizedDescription)
+            }
+        }
     }
 }
 
