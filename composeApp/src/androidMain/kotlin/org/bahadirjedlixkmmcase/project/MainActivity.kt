@@ -10,11 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import network.JedlixSDK
+import viewModel.KMMViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val movieSDK: JedlixSDK = JedlixSDK()
+    private val movieSDK: KMMViewModel = KMMViewModel()
     private val mainScope = MainScope()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -26,15 +26,24 @@ struct ContentView: View {
         .padding()
     }
     
+
     func network() {
-        let sdk = JedlixAPI()
-        sdk.getChargeStations { results, error in
+        let sdk = ChargePointsRepository()
+        sdk.getChargePoints { results, error in
             if let results = results {
                 print("Result", results)
             } else {
                 print("Localized", error?.localizedDescription)
             }
         }
+        /*
+        sdk.getChargeStations { results, error in
+            if let results = results {
+                print("Result", results)
+            } else {
+                print("Localized", error?.localizedDescription)
+            }
+        }*/
     }
 }
 

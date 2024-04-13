@@ -1,10 +1,6 @@
 package network
 
 @kotlinx.serialization.Serializable
-data class BaseResponse(val response: List<ChargePoint>?)
-
-
-@kotlinx.serialization.Serializable
 data class ChargePoint(
 //    val dataProvider: DataProvider,
 //    val operatorInfo: OperatorInfo?,
