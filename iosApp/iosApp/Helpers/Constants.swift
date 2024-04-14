@@ -12,6 +12,7 @@ enum E {
     enum Strings {
         enum Title {
             static let locations = "Locations"
+            static let widgetName = "Jedlix Widget"
         }
 
         enum Errors {
@@ -21,17 +22,24 @@ enum E {
             static let failedDecoding = "Failed to decode object"
             
             static let noCell = "Couldn't find cell for: "
+            static let noItems = "No Items"
         }
         
         enum Text {
             static let ok = "OK"
             static let cancel = "Cancel"
+            static let favoriteStat = "Favorite Stations"
         }
         
         enum Images {
             static let arrow = "arrow.down"
             static let heartFill = "heart.fill"
             static let heart = "heart"
+            static let chargeIcon = "charge-icon"
+        }
+        
+        enum Description {
+            static let descriptionWidget = "This is an case app widget for jedlix."
         }
     }
 }
