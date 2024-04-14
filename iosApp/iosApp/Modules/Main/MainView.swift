@@ -50,7 +50,10 @@ struct MainView: View {
             }
         }
     }
-    
+}
+
+// MARK: - View Components
+extension MainView {
     private func mapContent(locations: [PoiModel]) -> some View {
         Map(coordinateRegion: $viewModel.mapRegion,
             annotationItems: locations,
@@ -72,7 +75,7 @@ struct MainView: View {
             viewModel.showLocationList.toggle()
         } label: {
             VStack {
-                Text((viewModel.mapLocation.addressInfo?.stateOrProvince).orEmptyString)
+                Text((viewModel.mapLocation.operatorInfo?.title).orEmptyString)
                     .font(.title2)
                     .fontWeight(.black)
                     .foregroundColor(.primary)
