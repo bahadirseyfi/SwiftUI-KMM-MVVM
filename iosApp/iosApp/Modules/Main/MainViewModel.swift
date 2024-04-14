@@ -31,7 +31,7 @@ final class MainViewModel: ObservableObject {
         self.mapLocation = location
         
         $mapLocation
-            .receive(on: DispatchQueue.main) // Ana iş parçacığında işle
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.updateMapRegion(poi: self.mapLocation )
             }
@@ -46,7 +46,6 @@ final class MainViewModel: ObservableObject {
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1,
                                    longitudeDelta: 0.1)
     
-    // All loaded locations
     @Published var locations: [PoiModel] = []
  // @Published var locationsData: [LocationData] = []
     @Published var idLocation: [Int] = []
