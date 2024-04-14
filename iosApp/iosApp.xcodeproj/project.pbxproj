@@ -15,6 +15,9 @@
 		52BD45FD2BCB6C7C00547BBE /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45FC2BCB6C7C00547BBE /* Mapper.swift */; };
 		52BD45FF2BCB6CD400547BBE /* PoiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45FE2BCB6CD400547BBE /* PoiModel.swift */; };
 		52BD46022BCB72FB00547BBE /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD46012BCB72FB00547BBE /* Optional+Ext.swift */; };
+		52BD46042BCB74BF00547BBE /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD46032BCB74BF00547BBE /* MapAnnotationView.swift */; };
+		52BD46062BCB753E00547BBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD46052BCB753E00547BBE /* Constants.swift */; };
+		52BD46082BCB757700547BBE /* StationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD46072BCB757700547BBE /* StationInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		52BD45FC2BCB6C7C00547BBE /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		52BD45FE2BCB6CD400547BBE /* PoiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiModel.swift; sourceTree = "<group>"; };
 		52BD46012BCB72FB00547BBE /* Optional+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ext.swift"; sourceTree = "<group>"; };
+		52BD46032BCB74BF00547BBE /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
+		52BD46052BCB753E00547BBE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		52BD46072BCB757700547BBE /* StationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInfoView.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = iosApp.app; path = JedlixKMMCase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -89,12 +95,15 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				52A81EDE2BCB5AC400593E2A /* MainView.swift */,
 				52A81EDA2BCB540600593E2A /* MainViewModel.swift */,
+				52BD46032BCB74BF00547BBE /* MapAnnotationView.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				52BD46002BCB72EB00547BBE /* Extensions */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				52BD45FC2BCB6C7C00547BBE /* Mapper.swift */,
 				52BD45FE2BCB6CD400547BBE /* PoiModel.swift */,
+				52BD46052BCB753E00547BBE /* Constants.swift */,
+				52BD46072BCB757700547BBE /* StationInfoView.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -209,6 +218,9 @@
 				52A81EDB2BCB540600593E2A /* MainViewModel.swift in Sources */,
 				52BD45FF2BCB6CD400547BBE /* PoiModel.swift in Sources */,
 				52BD46022BCB72FB00547BBE /* Optional+Ext.swift in Sources */,
+				52BD46042BCB74BF00547BBE /* MapAnnotationView.swift in Sources */,
+				52BD46062BCB753E00547BBE /* Constants.swift in Sources */,
+				52BD46082BCB757700547BBE /* StationInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

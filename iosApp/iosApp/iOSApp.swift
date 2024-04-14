@@ -5,8 +5,10 @@ import Shared
 struct iOSApp: App {
 	var body: some Scene {
         let sdk = ChargePointsRepository()
+        @StateObject var viewModel = MainViewModel(kmmRepository: sdk)
 		WindowGroup {
-            MainView(viewModel: MainViewModel(kmmRepository: sdk))
+            MainView()
+                .environmentObject(viewModel)
 		}
 	}
 }

@@ -9,6 +9,7 @@
 import Foundation
 import Shared
 import MapKit
+import Combine
 
 final class MainViewModel: ObservableObject {
     
@@ -20,23 +21,21 @@ final class MainViewModel: ObservableObject {
     
     let kmmRepository: ChargePointsRepository
     
-    private let defaultLocation: PoiModel = {
-        return PoiModel(id: nil,
-                        uuid: nil,
-                        usageCost: nil,
-                        operatorInfo: nil,
-                        addressInfo: nil)
-    }()
+    @Published var mapLocation: PoiModel
     
-    @Published var mapLocation: PoiModel {
-        didSet {
-            self.updateMapRegion(poi: mapLocation)
-        }
-    }
+    private var cancellables: Set<AnyCancellable> = []
     
     init(kmmRepository: ChargePointsRepository) {
         self.kmmRepository = kmmRepository
-        mapLocation = defaultLocation
+        let location = defaultLocation
+        self.mapLocation = location
+        
+        $mapLocation
+            .receive(on: DispatchQueue.main) // Ana iş parçacığında işle
+            .sink { _ in
+                self.updateMapRegion(poi: self.mapLocation )
+            }
+            .store(in: &cancellables)
     }
     
     @Published var launches = LoadableLaunches.loading
@@ -81,13 +80,27 @@ final class MainViewModel: ObservableObject {
     func getChargePoints() {
         kmmRepository.getChargePoints { points, error in
             if let points {
-                print("Points: ",points)
-                print("Mapped: ", Mapper.map(from: points))
+                self.locations = Mapper.map(from: points)
                 self.launches = .result(Mapper.map(from: points))
-                
+                if let mapLocation = self.locations.first {
+                    self.mapLocation = mapLocation
+                }
             } else if let error {
                 self.launches = .error(error.localizedDescription)
             }
         }
     }
+    
+    private let defaultLocation: PoiModel = {
+        return PoiModel(id: nil,
+                        uuid: nil,
+                        usageCost: nil,
+                        operatorInfo: nil,
+                        addressInfo: AddressInfo(title: nil,
+                                                 addressLine1: nil,
+                                                 stateOrProvince: nil,
+                                                 country: nil,
+                                                 latitude: 40.450356638230915,
+                                                 longitude: -3.677850810659322))
+    }()
 }
