@@ -1,10 +1,12 @@
 import SwiftUI
+import Shared
 
 @main
 struct iOSApp: App {
 	var body: some Scene {
+        let sdk = ChargePointsRepository()
 		WindowGroup {
-			ContentView()
+            MainView(viewModel: MainView.MainViewModel(kmmRepository: sdk))
 		}
 	}
 }
