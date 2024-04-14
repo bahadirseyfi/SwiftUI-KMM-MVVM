@@ -9,47 +9,99 @@
 import WidgetKit
 import SwiftUI
 
+struct SimpleItem {
+    var id: String
+    var text: String
+    var operatorTitle: String
+}
+
 struct Provider: TimelineProvider {
+    
+    private let dataSource: ItemDataSource
+    
+    init(dataSource: ItemDataSource = ItemDataSource.shared) {
+        self.dataSource = dataSource
+    }
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        let mockData = SimpleItem(id: "1", text: "15€ per hour", operatorTitle: "Tesla Charge")
+        
+        return SimpleEntry(date: Date(), items: [mockData])
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), items: [])
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+        Task { @MainActor in
+            var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+            let dataItems = ItemDataSource.shared.fetchItems()
+            let simpleItems = dataItems.map { SimpleItem(id: $0.id.entityIdentifierString,
+                                                         text: $0.operatorInfo.title,
+                                                         operatorTitle: $0.usageCost) }
+            
+            entries.append(SimpleEntry(date: .now, items: simpleItems))
+
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let items: [SimpleItem]
 }
 
 struct iOSAppWidgetEntryView : View {
     var entry: Provider.Entry
-
+    
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+            if entry.items.isEmpty {
+                Text(E.Strings.Errors.noItems)
+                    .foregroundStyle(.white)
+                    .font(.title)
+                    .lineLimit(1)
+            } else {
+                HStack {
+                    Text(E.Strings.Text.favoriteStat)
+                        .foregroundStyle(.white)
+                        .font(.callout)
+                        .lineLimit(1)
+                    
+                    Spacer()
+                    
+                    Image(E.Strings.Images.chargeIcon)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .aspectRatio(contentMode: .fit)
+                }
+                
+                Spacer()
+                
+                itemsContent()
+            }
+        }
+    }
+    
+    fileprivate func itemsContent() -> VStack<ForEach<[SimpleItem], String, some View>> {
+        return VStack {
+            ForEach(entry.items, id: \.id) { item in
+                HStack(spacing: 3) {
+                    Text(item.operatorTitle)
+                        .foregroundStyle(.orange)
+                        .lineLimit(1)
+                        .font(.caption)
+                    
+                    Spacer()
+                    
+                    Text(item.text).font(.caption).bold().foregroundStyle(.mint)
+                }.frame(maxWidth: .infinity, alignment: .leading).contentShape(Rectangle())
+            }
         }
     }
 }
@@ -68,14 +120,9 @@ struct iOSAppWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName(E.Strings.Title.widgetName)
+        .description(E.Strings.Description.descriptionWidget)
     }
 }
 
-#Preview(as: .systemSmall) {
-    iOSAppWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
-}
+

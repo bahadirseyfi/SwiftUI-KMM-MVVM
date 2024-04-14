@@ -14,6 +14,7 @@
 		529A4C292BCC10CF0059EA51 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A4C282BCC10CF0059EA51 /* FavoriteView.swift */; };
 		529A4C2A2BCC37C10059EA51 /* ItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD462A2BCB878400547BBE /* ItemDataSource.swift */; };
 		529A4C2B2BCC37CF0059EA51 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A4C252BCC0E7F0059EA51 /* LocationData.swift */; };
+		529A4C2D2BCC86320059EA51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD46052BCB753E00547BBE /* Constants.swift */; };
 		52A81EDB2BCB540600593E2A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EDA2BCB540600593E2A /* MainViewModel.swift */; };
 		52A81EDF2BCB5AC400593E2A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EDE2BCB5AC400593E2A /* MainView.swift */; };
 		52BD45FD2BCB6C7C00547BBE /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45FC2BCB6C7C00547BBE /* Mapper.swift */; };
@@ -367,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529A4C2D2BCC86320059EA51 /* Constants.swift in Sources */,
 				529A4C2B2BCC37CF0059EA51 /* LocationData.swift in Sources */,
 				529A4C2A2BCC37C10059EA51 /* ItemDataSource.swift in Sources */,
 				52BD46192BCB815800547BBE /* iOSAppWidgetBundle.swift in Sources */,
