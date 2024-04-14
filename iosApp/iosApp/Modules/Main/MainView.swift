@@ -22,8 +22,7 @@ struct MainView: View {
             switch viewModel.launches {
             case .loading:
                 // TODO: - Handle loading stat
-                Text("Loading")
-                
+                ProgressView()
             case .result(let resultArray):
                 viewContent(locations: resultArray)
                 
