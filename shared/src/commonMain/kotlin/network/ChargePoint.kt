@@ -3,19 +3,19 @@ package network
 @kotlinx.serialization.Serializable
 data class ChargePoint(
 //    val dataProvider: DataProvider,
-//    val operatorInfo: OperatorInfo?,
+    val operatorInfo: OperatorInfo?,
 //    val usageType: UsageType,
 //    val statusType: StatusType,
 //    val submissionStatus: SubmissionStatus,
 //    val userComments: String?, // Change type accordingly if needed
 //    val percentageSimilarity: String?, // Change type accordingly if needed
-//    val mediaItems: String?, // Change type accordingly if needed
+    val mediaItems: String?, // Change type accordingly if needed
 //    val isRecentlyVerified: Boolean?,
 //    val dateLastVerified: String?,
-    val isRecentlyVerified: Boolean?,
-    val dateLastVerified: String?,
+//    val isRecentlyVerified: Boolean?,
+//    val dateLastVerified: String?,
     val id: Int?,
-    val uuid: String?
+    val uuid: String?,
 //    val uuid: String?,
 //    val parentChargePointID: String?, // Change type accordingly if needed
 //    val dataProviderID: Int,
@@ -23,7 +23,7 @@ data class ChargePoint(
 //    val operatorID: Int,
 //    val operatorsReference: String?, // Change type accordingly if needed
 //    val usageTypeID: Int,
-//    val usageCost: String,
+      val usageCost: String?,
 //    val addressInfo: AddressInfo?,
 //    val connections: List<Connection>,
 //    val numberOfPoints: Int,
@@ -95,8 +95,8 @@ data class AddressInfo(
     val id: Int?,
     val title: String?,
     val addressLine1: String?,
-    val addressLine2: String?,
-    val town: String?,
+//    val addressLine2: String?,
+//    val town: String?,
     val stateOrProvince: String?,
     val country: Country?,
     val latitude: Double?,
@@ -105,9 +105,9 @@ data class AddressInfo(
 
 @kotlinx.serialization.Serializable
 data class Country(
-    val iSOCode: String?,
-    val continentCode: String?,
-    val id: Int?,
+//    val iSOCode: String?,
+//    val continentCode: String?,
+//    val id: Int?,
     val title: String?
 )
 
