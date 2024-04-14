@@ -26,26 +26,34 @@ struct FavoriteView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items, id: \.self) { item in
-                    HStack(alignment: .center, spacing: 8) {
-                        Text(item.operatorInfo.title)
-                        
-                        Text(item.addressInfo.country.title)
-                        
-                        Spacer()
-                        
-                        Button {
-                            // TODO: - Open website from URL
-                        } label: {
-                            Image(systemName: E.Strings.Images.globe)
-                        }
-                    }
-                }.onDelete(perform: deleteItem)
+            if !items.isEmpty {
+                listContent
+            } else {
+                Text("No data, add favorite locations!")
             }
         }
         .onAppear { fetchItems() }
         .onReceive(locationDataManager.locationDataPublisher, perform: updateItems)
+    }
+    
+    private var listContent: some View {
+        List {
+            ForEach(items, id: \.self) { item in
+                HStack(alignment: .center, spacing: 8) {
+                    Text(item.operatorInfo.title)
+                    
+                    Text(item.addressInfo.country.title)
+                    
+                    Spacer()
+                    
+                    Button {
+                        // TODO: - Open website from URL
+                    } label: {
+                        Image(systemName: E.Strings.Images.globe)
+                    }
+                }
+            }.onDelete(perform: deleteItem)
+        }
     }
     
     func deleteItem(at offsets: IndexSet) {
