@@ -15,6 +15,8 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import network.AppConstant.PAGING
+import network.AppConstant.TYPING
 
 class JedlixAPI {
     private val httpClient = HttpClient {
@@ -34,7 +36,7 @@ class JedlixAPI {
         }
     }
     suspend fun getChargeStations(): List<ChargePoint>? {
-        return httpClient.get("${BASE_URL}?key=${API_KEY}&maxresults=2&camelcase=true"){
+        return httpClient.get("${BASE_URL}?key=${API_KEY}&${PAGING}=20&${TYPING}=true"){
             contentType(ContentType.Application.Json)
         }.body()
     }
