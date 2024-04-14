@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct StationInfoView: View {
-    @Binding var location: PoiModel
+    let location: PoiModel
     var nextButtonAction: ()->()
     
     var body: some View {
