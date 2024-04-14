@@ -15,6 +15,7 @@
 		529A4C2A2BCC37C10059EA51 /* ItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD462A2BCB878400547BBE /* ItemDataSource.swift */; };
 		529A4C2B2BCC37CF0059EA51 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A4C252BCC0E7F0059EA51 /* LocationData.swift */; };
 		529A4C2D2BCC86320059EA51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD46052BCB753E00547BBE /* Constants.swift */; };
+		529A4C312BCC88FA0059EA51 /* PoiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45FE2BCB6CD400547BBE /* PoiModel.swift */; };
 		52A81EDB2BCB540600593E2A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EDA2BCB540600593E2A /* MainViewModel.swift */; };
 		52A81EDF2BCB5AC400593E2A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EDE2BCB5AC400593E2A /* MainView.swift */; };
 		52BD45FD2BCB6C7C00547BBE /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45FC2BCB6C7C00547BBE /* Mapper.swift */; };
@@ -130,6 +131,31 @@
 			path = Favorite;
 			sourceTree = "<group>";
 		};
+		529A4C2E2BCC88C90059EA51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52BD45FE2BCB6CD400547BBE /* PoiModel.swift */,
+				529A4C252BCC0E7F0059EA51 /* LocationData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		529A4C2F2BCC88D70059EA51 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				52BD45FC2BCB6C7C00547BBE /* Mapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		529A4C302BCC88E10059EA51 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				52BD462A2BCB878400547BBE /* ItemDataSource.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		52BD46002BCB72EB00547BBE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,11 +202,9 @@
 		52BD460D2BCB7F0B00547BBE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				529A4C2F2BCC88D70059EA51 /* Mapper */,
+				529A4C2E2BCC88C90059EA51 /* Models */,
 				52BD46052BCB753E00547BBE /* Constants.swift */,
-				52BD45FE2BCB6CD400547BBE /* PoiModel.swift */,
-				52BD45FC2BCB6C7C00547BBE /* Mapper.swift */,
-				52BD462A2BCB878400547BBE /* ItemDataSource.swift */,
-				529A4C252BCC0E7F0059EA51 /* LocationData.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -224,6 +248,7 @@
 				52BD46092BCB7ED900547BBE /* App */,
 				52BD460A2BCB7EE000547BBE /* Modules */,
 				52BD460C2BCB7EF400547BBE /* Components */,
+				529A4C302BCC88E10059EA51 /* Storage */,
 				52BD460D2BCB7F0B00547BBE /* Helpers */,
 				52BD46002BCB72EB00547BBE /* Extensions */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -372,6 +397,7 @@
 				529A4C2B2BCC37CF0059EA51 /* LocationData.swift in Sources */,
 				529A4C2A2BCC37C10059EA51 /* ItemDataSource.swift in Sources */,
 				52BD46192BCB815800547BBE /* iOSAppWidgetBundle.swift in Sources */,
+				529A4C312BCC88FA0059EA51 /* PoiModel.swift in Sources */,
 				52BD461B2BCB815800547BBE /* iOSAppWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
