@@ -35,7 +35,11 @@ final class MainViewModel {
         self.dataSource = dataSource
     }
     
+    // MARK: - Favorite Flag
+    var isAddedFavorite: Bool = false
     var launches = LoadableLaunches.loading
+    var hasAppeared: Bool = false
+    
     
     // MARK: - Map
     var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
@@ -53,12 +57,6 @@ final class MainViewModel {
         }
     }
     
-    
-    // MARK: - Favorite Flag
-    var isAddedFavorite: Bool = false
-    
-    var hasAppeared: Bool = false
-    
     private func updateMapRegion(poi: PoiModel) {
         mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (poi.addressInfo?.latitude).orZero,
                                                                       longitude: (poi.addressInfo?.longitude).orZero),
@@ -69,6 +67,8 @@ final class MainViewModel {
         mapLocation = location
     }
     
+    
+    // MARK: - Actions
     func nextButtonAction() {
         guard let currentIndex = locations.firstIndex(where: {$0.id == mapLocation.id }) else  { return }
         
@@ -102,7 +102,7 @@ final class MainViewModel {
     }
     
     
-    // MARK: - Network logic
+    // MARK: - Network & Local Storage logic
     func getChargePoints() {
         guard !hasAppeared else { return }
         
@@ -130,6 +130,7 @@ final class MainViewModel {
         checkFavorite(location: mapLocation)
     }
     
+    // MARK: - Constants
     private let defaultLocation: PoiModel = {
         return PoiModel(id: nil,
                         uuid: nil,
@@ -142,4 +143,14 @@ final class MainViewModel {
                                                  latitude: 40.450356638230915,
                                                  longitude: -3.677850810659322))
     }()
+}
+
+// MARK: - View Model on appear functions
+extension MainViewModel {
+    @MainActor
+    func performInitialFetch() {
+        getChargePoints()
+        getLocationsData()
+        hasAppeared = true
+    }
 }

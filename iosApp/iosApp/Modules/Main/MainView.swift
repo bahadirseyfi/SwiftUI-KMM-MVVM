@@ -21,19 +21,20 @@ struct MainView: View {
         ZStack {
             switch viewModel.launches {
             case .loading:
+                // TODO: - Handle loading stat
                 Text("Loading")
                 
             case .result(let resultArray):
                 viewContent(locations: resultArray)
                 
             case .error(let result):
+                // TODO: - Handle Error stat
                 Text("\(result)")
             }
-        }.background(ignoresSafeAreaEdges: .top)
+        }
+        .background(ignoresSafeAreaEdges: .top)
         .onAppear {
-            viewModel.getLocationsData()
-            viewModel.getChargePoints()
-            viewModel.hasAppeared = true
+            viewModel.performInitialFetch()
         }
     }
 
