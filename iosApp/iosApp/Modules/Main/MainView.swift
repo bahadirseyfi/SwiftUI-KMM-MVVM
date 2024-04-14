@@ -11,30 +11,32 @@ import Shared
 import MapKit
 
 struct MainView: View {
-    @EnvironmentObject var viewModel: MainViewModel
+    @State private var viewModel: MainViewModel
+    
+    init(kmmRepository: ChargePointsRepository) {
+        self.viewModel = MainViewModel(kmmRepository: kmmRepository)
+    }
     
     var body: some View {
         ZStack {
-            updateIU()
-        }.ignoresSafeArea()
+            switch viewModel.launches {
+            case .loading:
+                Text("Loading")
+                
+            case .result(let resultArray):
+                viewContent(locations: resultArray)
+                
+            case .error(let result):
+                Text("\(result)")
+            }
+        }.background(ignoresSafeAreaEdges: .top)
         .onAppear {
+            viewModel.getLocationsData()
             viewModel.getChargePoints()
+            viewModel.hasAppeared = true
         }
     }
-    
-    func updateIU() -> AnyView {
-        switch viewModel.launches{
-        case .loading:
-            return AnyView(Text("Loading"))
-            
-        case .result(let resultArray):
-            return AnyView(viewContent(locations: resultArray))
-            
-        case .error(let result):
-            return AnyView(Text("\(result)"))
-        }
-    }
-    
+
     private func viewContent(locations: [PoiModel]) -> some View {
         ZStack {
             mapContent(locations: locations)
@@ -44,8 +46,8 @@ struct MainView: View {
                 Spacer()
                 
                 stationInfoContent(locations: locations)
+                    .padding(.bottom)
             }
-           
         }
     }
     
@@ -67,7 +69,7 @@ struct MainView: View {
     
     private func stationInfoContent(locations: [PoiModel]) -> some View {
         ZStack {
-            ForEach($viewModel.locations, id: \.id) { location in
+            ForEach(viewModel.locations, id: \.id) { location in
                 if (viewModel.mapLocation.id).orZero == (location.id) {
                     StationInfoView(location: location,
                                     nextButtonAction: viewModel.nextButtonAction)
@@ -77,9 +79,13 @@ struct MainView: View {
                                                 removal: .move(edge: .leading)))
                         .overlay(alignment: .topTrailing) {
                             Button {
-                              //
+                                viewModel.addFavoriteButonAction(location: location)
                             } label: {
-                              //
+                                Image(systemName: viewModel.isAddedFavorite ? E.Strings.Images.heartFill : E.Strings.Images.heart)
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.red)
+                                    .padding([.trailing, .top], 24)
                             }
                         }
                 }
