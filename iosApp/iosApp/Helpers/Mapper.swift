@@ -35,4 +35,29 @@ final class Mapper {
             )
         }
     }
+    
+    static func map(from poiModel: PoiModel) -> LocationData {
+        let operatorInfo = OperatorInfo(title: poiModel.operatorInfo?.title.orEmptyString,
+                                        websiteURL: poiModel.operatorInfo?.websiteURL.orEmptyString)
+        
+        let country: Country? = poiModel.addressInfo != nil ? Country(title: poiModel.addressInfo!.country?.title.orEmptyString) : nil
+        
+        let addressInfo = AddressInfo(title: (poiModel.addressInfo?.title).orEmptyString,
+                                      addressLine1: (poiModel.addressInfo?.addressLine1).orEmptyString,
+                                      stateOrProvince: (poiModel.addressInfo?.stateOrProvince).orEmptyString,
+                                      country: country,
+                                      latitude: (poiModel.addressInfo?.latitude).orZero,
+                                      longitude: (poiModel.addressInfo?.longitude).orZero)
+        
+        return LocationData(id: poiModel.id.orZero,
+                            usageCost: poiModel.usageCost.orEmptyString,
+                            operatorInfo: OperatorInfoData(title: operatorInfo.title.orEmptyString,
+                                                           websiteURL: operatorInfo.websiteURL.orEmptyString),
+                            addressInfo: AddressInfoData(title: addressInfo.title .orEmptyString,
+                                                         addressLine1: addressInfo.addressLine1.orEmptyString,
+                                                         stateOrProvince: addressInfo.stateOrProvince.orEmptyString,
+                                                         country: CountryData(title: (addressInfo.country?.title).orEmptyString),
+                                                         latitude: addressInfo.latitude.orZero,
+                                                         longitude: addressInfo.longitude.orZero))
+    }
 }
