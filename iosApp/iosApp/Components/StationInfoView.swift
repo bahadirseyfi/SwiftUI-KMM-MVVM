@@ -37,7 +37,7 @@ struct StationInfoView: View {
 extension StationInfoView {
     private var imageSetion: some View {
         ZStack {
-            Image("charge-icon")
+            Image(E.Strings.Images.chargeIcon)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 100, height: 100)
@@ -62,7 +62,7 @@ extension StationInfoView {
         Button {
          // TODO: - learn more
         } label: {
-            Text("Learn More")
+            Text(E.Strings.Text.learnMore)
                 .font(.headline)
                 .frame(width: 130, height: 35)
         }
@@ -73,7 +73,7 @@ extension StationInfoView {
         Button {
            nextButtonAction()
         } label: {
-            Text("Next")
+            Text(E.Strings.Text.next)
                 .font(.headline)
                 .frame(width: 130, height: 35)
         }

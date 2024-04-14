@@ -13,6 +13,8 @@ enum E {
         enum Title {
             static let locations = "Locations"
             static let widgetName = "Jedlix Widget"
+            static let favorite = "Favorite"
+            static let main = "Main"
         }
 
         enum Errors {
@@ -29,6 +31,8 @@ enum E {
             static let ok = "OK"
             static let cancel = "Cancel"
             static let favoriteStat = "Favorite Stations"
+            static let learnMore = "Learn More"
+            static let next = "Text"
         }
         
         enum Images {
@@ -36,6 +40,8 @@ enum E {
             static let heartFill = "heart.fill"
             static let heart = "heart"
             static let chargeIcon = "charge-icon"
+            static let globe = "globe"
+            static let house = "house"
         }
         
         enum Description {

@@ -36,9 +36,9 @@ struct FavoriteView: View {
                         Spacer()
                         
                         Button {
-                            // Open website from URL
+                            // TODO: - Open website from URL
                         } label: {
-                            Image(systemName: "globe")
+                            Image(systemName: E.Strings.Images.globe)
                         }
                     }
                 }.onDelete(perform: deleteItem)

@@ -11,11 +11,13 @@ struct iOSApp: App {
             TabView {
                 MainView(kmmRepository: kmmRepository)
                     .tabItem {
-                        Label("Main", systemImage: "gear")
+                        Label(E.Strings.Title.main,
+                              systemImage: E.Strings.Images.house)
                     }
                 FavoriteView()
                     .tabItem {
-                        Label("Favorite", systemImage: "gear")
+                        Label(E.Strings.Title.favorite,
+                              systemImage: E.Strings.Images.heartFill)
                     }
             }
         }

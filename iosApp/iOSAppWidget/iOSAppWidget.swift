@@ -88,7 +88,7 @@ struct iOSAppWidgetEntryView : View {
         }
     }
     
-    fileprivate func itemsContent() -> VStack<ForEach<[SimpleItem], String, some View>> {
+    private func itemsContent() -> VStack<ForEach<[SimpleItem], String, some View>> {
         return VStack {
             ForEach(entry.items, id: \.id) { item in
                 HStack(spacing: 3) {
