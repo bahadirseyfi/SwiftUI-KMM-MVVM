@@ -39,7 +39,7 @@ final class MainViewModel {
     var isAddedFavorite: Bool = false
     var launches = LoadableLaunches.loading
     var hasAppeared: Bool = false
-    
+    var showLocationList: Bool = false
     
     // MARK: - Map
     var mapRegion: MKCoordinateRegion = MKCoordinateRegion()

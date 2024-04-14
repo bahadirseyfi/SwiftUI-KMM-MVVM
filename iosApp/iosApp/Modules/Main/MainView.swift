@@ -32,7 +32,6 @@ struct MainView: View {
                 Text("\(result)")
             }
         }
-        .background(ignoresSafeAreaEdges: .top)
         .onAppear {
             viewModel.performInitialFetch()
         }
@@ -42,7 +41,8 @@ struct MainView: View {
         ZStack {
             mapContent(locations: locations)
             VStack {
-               // TODO: - Header
+                header
+                    .padding()
                 
                 Spacer()
                 
@@ -68,6 +68,42 @@ struct MainView: View {
         }).preferredColorScheme(.dark)
     }
     
+    private var header: some View {
+        Button {
+            viewModel.showLocationList.toggle()
+        } label: {
+            VStack {
+                Text((viewModel.mapLocation.addressInfo?.stateOrProvince).orEmptyString)
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundColor(.primary)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .animation(.none, value: viewModel.showLocationList)
+                    .background(Color.clear)
+                    .overlay(alignment: .leading) {
+                        Image(systemName: E.Strings.Images.arrow)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                            .padding()
+                            .rotationEffect(Angle(degrees:  viewModel.showLocationList ? 180: 0))
+                            .animation(.bouncy, value: viewModel.showLocationList)
+                    }
+                
+                if viewModel.showLocationList {
+                    withAnimation {
+                        StationListView(locations: viewModel.locations, nextButtonAction: { location in
+                            viewModel.selectedLocation(location: location)
+                        })
+                    }
+                }
+            }
+        }
+        .background(.thinMaterial)
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 15)
+    }
+    
     private func stationInfoContent(locations: [PoiModel]) -> some View {
         ZStack {
             ForEach(viewModel.locations, id: \.id) { location in
@@ -87,6 +123,7 @@ struct MainView: View {
                                     .frame(width: 30, height: 30)
                                     .foregroundColor(.red)
                                     .padding([.trailing, .top], 24)
+                                    .animation(.spring, value: viewModel.isAddedFavorite)
                             }
                         }
                 }
