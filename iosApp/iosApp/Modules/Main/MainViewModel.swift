@@ -10,8 +10,12 @@ import Foundation
 import Shared
 import MapKit
 import Combine
+import SwiftUI
 
-final class MainViewModel: ObservableObject {
+@Observable
+final class MainViewModel {
+    @ObservationIgnored
+    private let dataSource: ItemDataSource
     
     enum LoadableLaunches {
         case loading
@@ -20,74 +24,110 @@ final class MainViewModel: ObservableObject {
     }
     
     let kmmRepository: ChargePointsRepository
-    
-    @Published var mapLocation: PoiModel
-    
+
     private var cancellables: Set<AnyCancellable> = []
     
-    init(kmmRepository: ChargePointsRepository) {
+    init(kmmRepository: ChargePointsRepository,
+         dataSource: ItemDataSource = ItemDataSource.shared) {
         self.kmmRepository = kmmRepository
         let location = defaultLocation
         self.mapLocation = location
-        
-        $mapLocation
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.updateMapRegion(poi: self.mapLocation )
-            }
-            .store(in: &cancellables)
+        self.dataSource = dataSource
     }
     
-    @Published var launches = LoadableLaunches.loading
+    var launches = LoadableLaunches.loading
     
     // MARK: - Map
-    @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
+    var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
     
+    @ObservationIgnored
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.1,
                                    longitudeDelta: 0.1)
     
-    @Published var locations: [PoiModel] = []
- // @Published var locationsData: [LocationData] = []
-    @Published var idLocation: [Int] = []
+    var locations: [PoiModel] = []
+    var locationsData: [LocationData] = []
+    
+    var mapLocation: PoiModel {
+        didSet {
+            self.updateMapRegion(poi: mapLocation)
+        }
+    }
+    
+    
+    // MARK: - Favorite Flag
+    var isAddedFavorite: Bool = false
+    
+    var hasAppeared: Bool = false
     
     private func updateMapRegion(poi: PoiModel) {
         mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (poi.addressInfo?.latitude).orZero,
                                                                       longitude: (poi.addressInfo?.longitude).orZero),
-                                           span: mapSpan)
+                                       span: mapSpan)
     }
     
     func selectedLocation(location: PoiModel) {
-            mapLocation = location
+        mapLocation = location
     }
     
     func nextButtonAction() {
         guard let currentIndex = locations.firstIndex(where: {$0.id == mapLocation.id }) else  { return }
         
         let nextIndex = currentIndex + 1
-        guard locations.indices.contains(nextIndex) else {
-            guard let firstLocation = locations.first  else {return}
-            selectedLocation(location: firstLocation)
-            return
+        let nextLocation: PoiModel
+        
+        if locations.count - 1 >= nextIndex {
+            nextLocation = locations[nextIndex]
+        } else {
+            guard let firstLocation = locations.first  else { return }
+            nextLocation = firstLocation
         }
         
-        let nextLocation = locations[nextIndex]
         selectedLocation(location: nextLocation)
+        checkFavorite(location: nextLocation)
+    }
+    
+    func addFavoriteButonAction(location: PoiModel) {
+        if isAddedFavorite, let locationData = locationsData.first(where: { $0.id == location.id }) {
+            dataSource.removeItem(locationData)
+        } else {
+            dataSource.appendItem(item: Mapper.map(from: location))
+        }
+    
+        locationsData = dataSource.fetchItems()
+        checkFavorite(location: location)
+    }
+
+    func checkFavorite(location: PoiModel) {
+        isAddedFavorite = locationsData.contains(where: { $0.id == location.id })
     }
     
     
     // MARK: - Network logic
     func getChargePoints() {
-        kmmRepository.getChargePoints { points, error in
+        guard !hasAppeared else { return }
+        
+        kmmRepository.getChargePoints { [weak self] points, error in
+            guard let self else { return }
+            
             if let points {
-                self.locations = Mapper.map(from: points)
-                self.launches = .result(Mapper.map(from: points))
-                if let mapLocation = self.locations.first {
-                    self.mapLocation = mapLocation
+                DispatchQueue.main.async {
+                    self.locations = Mapper.map(from: points)
+                    self.launches = .result(Mapper.map(from: points))
+                    if let mapLocation = self.locations.first {
+                        self.mapLocation = mapLocation
+                        self.checkFavorite(location: mapLocation)
+                    }
                 }
             } else if let error {
-                self.launches = .error(error.localizedDescription)
+                launches = .error(error.localizedDescription)
             }
         }
+    }
+    
+    func getLocationsData() {
+        let locations = dataSource.fetchItems()
+        self.locationsData = locations
+        checkFavorite(location: mapLocation)
     }
     
     private let defaultLocation: PoiModel = {

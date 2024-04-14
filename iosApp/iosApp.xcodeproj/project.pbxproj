@@ -10,6 +10,10 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		529A4C262BCC0E7F0059EA51 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A4C252BCC0E7F0059EA51 /* LocationData.swift */; };
+		529A4C292BCC10CF0059EA51 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A4C282BCC10CF0059EA51 /* FavoriteView.swift */; };
+		529A4C2A2BCC37C10059EA51 /* ItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD462A2BCB878400547BBE /* ItemDataSource.swift */; };
+		529A4C2B2BCC37CF0059EA51 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529A4C252BCC0E7F0059EA51 /* LocationData.swift */; };
 		52A81EDB2BCB540600593E2A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EDA2BCB540600593E2A /* MainViewModel.swift */; };
 		52A81EDF2BCB5AC400593E2A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A81EDE2BCB5AC400593E2A /* MainView.swift */; };
 		52BD45FD2BCB6C7C00547BBE /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD45FC2BCB6C7C00547BBE /* Mapper.swift */; };
@@ -24,6 +28,7 @@
 		52BD461B2BCB815800547BBE /* iOSAppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD461A2BCB815800547BBE /* iOSAppWidget.swift */; };
 		52BD461D2BCB815900547BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52BD461C2BCB815900547BBE /* Assets.xcassets */; };
 		52BD46212BCB815900547BBE /* iOSAppWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 52BD46122BCB815800547BBE /* iOSAppWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52BD462B2BCB878400547BBE /* ItemDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD462A2BCB878400547BBE /* ItemDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,8 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		529A4C252BCC0E7F0059EA51 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		529A4C282BCC10CF0059EA51 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		52A81EDA2BCB540600593E2A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		52A81EDE2BCB5AC400593E2A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		52BD45FC2BCB6C7C00547BBE /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
@@ -71,6 +78,7 @@
 		52BD461E2BCB815900547BBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52BD46262BCB817300547BBE /* iosAppRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iosAppRelease.entitlements; sourceTree = "<group>"; };
 		52BD46272BCB819700547BBE /* iOSAppWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSAppWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
+		52BD462A2BCB878400547BBE /* ItemDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDataSource.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* JedlixKMMCase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JedlixKMMCase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -113,6 +121,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		529A4C272BCC10BF0059EA51 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				529A4C282BCC10CF0059EA51 /* FavoriteView.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		52BD46002BCB72EB00547BBE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				52BD460B2BCB7EE800547BBE /* Main */,
+				529A4C272BCC10BF0059EA51 /* Favorite */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -161,6 +178,8 @@
 				52BD46052BCB753E00547BBE /* Constants.swift */,
 				52BD45FE2BCB6CD400547BBE /* PoiModel.swift */,
 				52BD45FC2BCB6C7C00547BBE /* Mapper.swift */,
+				52BD462A2BCB878400547BBE /* ItemDataSource.swift */,
+				529A4C252BCC0E7F0059EA51 /* LocationData.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -348,6 +367,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529A4C2B2BCC37CF0059EA51 /* LocationData.swift in Sources */,
+				529A4C2A2BCC37C10059EA51 /* ItemDataSource.swift in Sources */,
 				52BD46192BCB815800547BBE /* iOSAppWidgetBundle.swift in Sources */,
 				52BD461B2BCB815800547BBE /* iOSAppWidget.swift in Sources */,
 			);
@@ -361,11 +382,14 @@
 				52A81EDF2BCB5AC400593E2A /* MainView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				52A81EDB2BCB540600593E2A /* MainViewModel.swift in Sources */,
+				529A4C292BCC10CF0059EA51 /* FavoriteView.swift in Sources */,
 				52BD45FF2BCB6CD400547BBE /* PoiModel.swift in Sources */,
 				52BD46022BCB72FB00547BBE /* Optional+Ext.swift in Sources */,
 				52BD46042BCB74BF00547BBE /* MapAnnotationView.swift in Sources */,
 				52BD46062BCB753E00547BBE /* Constants.swift in Sources */,
 				52BD46082BCB757700547BBE /* StationInfoView.swift in Sources */,
+				529A4C262BCC0E7F0059EA51 /* LocationData.swift in Sources */,
+				52BD462B2BCB878400547BBE /* ItemDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
