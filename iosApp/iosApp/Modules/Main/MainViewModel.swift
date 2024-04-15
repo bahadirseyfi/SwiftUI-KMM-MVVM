@@ -24,8 +24,6 @@ final class MainViewModel {
     }
     
     let kmmRepository: ChargePointsRepository
-
-    private var cancellables: Set<AnyCancellable> = []
     
     init(kmmRepository: ChargePointsRepository,
          dataSource: ItemDataSource = ItemDataSource.shared) {
