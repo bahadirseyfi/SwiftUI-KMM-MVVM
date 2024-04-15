@@ -38,5 +38,9 @@ EV Charging Locator is a modern application developed for iOS 17 and above devic
 ```Frameworks: Widgetkit-SwiftUI-KMM```
 
 
+## Getting help
+
+If you have questions, concerns, reports, etc, please contact me: `bahadirsoftware@gmail.com`
+
 
  
