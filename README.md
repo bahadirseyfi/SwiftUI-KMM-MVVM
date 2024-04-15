@@ -42,5 +42,11 @@ EV Charging Locator is a modern application developed for iOS 17 and above devic
 
 If you have questions, concerns, reports, etc, please contact me: `bahadirsoftware@gmail.com`
 
+## Screenshots
+
+https://github.com/bahadirseyfi/JedlixKMMiOSCase/assets/57216650/055465ee-1587-4758-bc22-9b8579543520
+
+https://github.com/bahadirseyfi/JedlixKMMiOSCase/assets/57216650/02cd8795-734c-435b-9aab-9da8a9f43841
+
 
  
