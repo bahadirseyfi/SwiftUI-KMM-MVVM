@@ -32,8 +32,7 @@ EV Charging Locator is a modern application developed for iOS 17 and above devic
 - __View Detailed Information__: Access detailed information about each charging station, including address, availability status, charging types, and more.
 
 - __Favorites__: Users can locally store favorite charging stations and mark them for quick access later.
-- 
-![diagramjedlix drawio](https://github.com/bahadirseyfi/JedlixKMMiOSCase/assets/57216650/5052b489-f639-4b61-b55a-c5551c1d8b16)
+  
 
 ```Frameworks: Widgetkit-SwiftUI-KMM```
 
